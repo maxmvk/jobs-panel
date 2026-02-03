@@ -7,6 +7,7 @@ import { routes } from './app.routes';
 import { CORE_FEATURE_KEY } from './core/store/core.selectors';
 import { coreReducer } from './core/store/core.reducer';
 import { loaderInterceptor } from './core/interceptors/loader.interceptor';
+import { provideEffects } from '@ngrx/effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -15,8 +16,7 @@ export const appConfig: ApplicationConfig = {
     provideStore({
       [CORE_FEATURE_KEY]: coreReducer,
     }),
-    provideHttpClient(
-      withInterceptors([loaderInterceptor])
-    )
+    provideHttpClient(withInterceptors([loaderInterceptor])),
+    provideEffects()
   ]
 };
