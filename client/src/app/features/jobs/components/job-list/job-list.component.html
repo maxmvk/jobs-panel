@@ -1,0 +1,10 @@
+<mat-list>
+  @for (job of jobs(); track job._id) {
+    <mat-card class="job-card">
+      <mat-card-header>
+        <mat-card-title>{{ job.name }}</mat-card-title>
+        <mat-card-subtitle>{{ job.task }}</mat-card-subtitle>
+      </mat-card-header>
+    </mat-card>
+  }
+</mat-list>
