@@ -1,6 +1,15 @@
 import { Routes } from '@angular/router';
-import { JobListComponent } from './features/jobs/components/job-list/job-list.component';
 
 export const routes: Routes = [
-  { path: '', component: JobListComponent },
+  { 
+    path: 'dashboard', 
+    loadChildren: () =>
+      import('./pages/dashboard-page/dashboard.routes')
+        .then(m => m.dashboardRoutes),
+  },
+  {
+    path: '',
+    redirectTo: 'dashboard',
+    pathMatch: 'full',
+  },
 ];
