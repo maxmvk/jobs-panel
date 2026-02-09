@@ -1,10 +1,52 @@
-<mat-list>
-  @for (job of jobs(); track job._id) {
-    <mat-card class="job-card">
-      <mat-card-header>
-        <mat-card-title>{{ job.name }}</mat-card-title>
-        <mat-card-subtitle>{{ job.task }}</mat-card-subtitle>
-      </mat-card-header>
-    </mat-card>
-  }
-</mat-list>
+<aside class="jobs-sidebar">
+  <header class="sidebar-header">
+    <h3>Jobs</h3>
+
+    <button
+      mat-icon-button
+      aria-label="Refresh jobs"
+    >
+      <mat-icon>refresh</mat-icon>
+    </button>
+  </header>
+
+  <section class="jobs-list">
+    @for (job of jobs(); track job.id) {
+      <mat-card
+        class="job-card"
+        [class.active]="job.id === selectedJobId"
+      >
+        <mat-card-header>
+          <mat-card-title>{{ job.title }}</mat-card-title>
+          <mat-card-subtitle>{{ job.company }}</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content>
+          <p class="description">
+            {{ job.description }}
+          </p>
+
+          <mat-chip-set>
+            <mat-chip
+              [class.open]="job.status === 'open'"
+              [class.closed]="job.status === 'closed'"
+            >
+              {{ job.status }}
+            </mat-chip>
+
+            <mat-chip>
+              <mat-icon>place</mat-icon>
+              {{ job.location }}
+            </mat-chip>
+          </mat-chip-set>
+        </mat-card-content>
+
+        <mat-card-footer>
+          <span class="date">
+            {{ job.createdAt | date:'dd MMM' }}
+          </span>
+        </mat-card-footer>
+      </mat-card>
+    }
+  </section>
+</aside>
