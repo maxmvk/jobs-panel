@@ -14,7 +14,8 @@
     @for (job of jobs(); track job.id) {
       <mat-card
         class="job-card"
-        [class.active]="job.id === selectedJobId"
+        [class.active]="job.id === selectedJobId()"
+        (click)="onSelectJob(job.id)"
       >
         <mat-card-header>
           <mat-card-title>{{ job.title }}</mat-card-title>

@@ -6,8 +6,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import { Store } from '@ngrx/store';
 import { JobsState } from '../../store/jobs.reducer';
-import { getJobs } from '../../store/jobs.actions';
-import { selectJobs } from '../../store/jobs.selectors';
+import { getJobs, selectJob } from '../../store/jobs.actions';
+import { selectJobs, selectSelectedJobId } from '../../store/jobs.selectors';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -27,8 +27,13 @@ export class JobListComponent implements OnInit {
   private readonly store: Store<JobsState> = inject(Store);
 
   public readonly jobs = this.store.selectSignal(selectJobs);
+  public readonly selectedJobId = this.store.selectSignal(selectSelectedJobId);
 
   public ngOnInit(): void {
     this.store.dispatch(getJobs())
+  }
+
+  public onSelectJob(jobId: string) {
+    this.store.dispatch(selectJob({ jobId }));
   }
 }

@@ -6,6 +6,8 @@ export enum JOB_ACTION_TYPES {
   GET_JOBS = 'GET_JOBS',
   GET_JOBS_SUCCESS = 'GET_JOBS_SUCCESS',
   GET_JOBS_FAILURE = 'GET_JOBS_FAILURE',
+
+  SELECT_JOB = 'SELECT_JOB',
 }
 
 export const getJobs = createAction(
@@ -20,4 +22,9 @@ export const getJobsSuccess = createAction(
 export const getJobsFailure = createAction(
   JOB_ACTION_TYPES.GET_JOBS_FAILURE,
   props<{ error: HttpErrorResponse }>()
+);
+
+export const selectJob = createAction(
+  JOB_ACTION_TYPES.SELECT_JOB,
+  props<{ jobId: string | null }>()
 );
