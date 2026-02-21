@@ -42,3 +42,9 @@ client/__screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+package-lock.json
+
+# Keep environment variables out of version control
+api/.env
+
+api/generated/prisma
